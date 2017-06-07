@@ -10,7 +10,7 @@ const pool  = mysql.createPool({
   	database : 'mysql'  // 选中数据库
 })
  
-/*let query = function( sql, values ) {
+let query = function( sql, values ) {
   	return new Promise(( resolve, reject ) => {
 	    pool.getConnection(function(err, connection) {
 	      	if (err) {
@@ -29,9 +29,16 @@ const pool  = mysql.createPool({
 	      	}
 	    })
   	})
-}*/
+}
+
+
+module.exports = { query }
+
+
+
+
 //数据库基本操作方法
-const query = function ( sql, values, callback ) {
+/*const query = function ( sql, values, callback ) {
     pool.getConnection(function(err, conn) {
         if (err) {
             callback(err, false)
@@ -46,7 +53,7 @@ const query = function ( sql, values, callback ) {
             }); 
         }
     });
-}
+}*/
 
 //数据库对外操作类
 exports.DatabaseUtil = {

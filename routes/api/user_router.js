@@ -11,4 +11,6 @@ const routers =router
     .get('/getUser', user_controller.getUser)
     .post('/registerUser', user_controller.registerUser)
 
+
+
 module.exports = routers;
