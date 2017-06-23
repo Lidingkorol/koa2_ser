@@ -9,8 +9,10 @@ const cors = require('koa-cors');
 const bodyParser = require('koa-bodyparser')
 const routers = require('./routes/api/index')
 
-/*const index = require('./routes/index')
-const users = require('./routes/users')*/
+const index = require('./routes/index')
+const users = require('./routes/users')
+
+
 // error handler
 onerror(app)
 
@@ -24,9 +26,12 @@ app.use(json())
 app.use(logger())
 app.use(require('koa-static')(__dirname + '/public'))
 
+
+//nunjucks模板引擎
 app.use(views(__dirname + '/views', {
-  extension: 'pug'
-}))
+        map: {html: 'nunjucks' }
+    }
+))
 
 // logger
 app.use(async (ctx, next) => {
@@ -37,10 +42,11 @@ app.use(async (ctx, next) => {
 })
 
 // routes
-// app.use(index.routes(), index.allowedMethods())
-// app.use(users.routes(), users.allowedMethods())
+ app.use(index.routes(), index.allowedMethods())
+ app.use(users.routes(), users.allowedMethods())
 
 // 初始化路由中间件
+//子路由
 app.use(routers.routes()).use(routers.allowedMethods())
 
 

@@ -10,6 +10,7 @@ const user_controller = require('../../app/controllers/user_controller');
 const routers =router
     .get('/getUser', user_controller.getUser)
     .post('/registerUser', user_controller.registerUser)
+    
 
 
 

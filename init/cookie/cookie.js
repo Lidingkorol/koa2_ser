@@ -1,8 +1,17 @@
-const router = require('koa-router')()
+/**
+ * Created by Administrator on 2017/6/23.
+ */
 
-const cookies = require('../init/cookie/cookie')
 
-router.get('/', async (ctx, next) => {
+
+/*
+ *
+ *	设置cookies
+ *
+ */
+
+
+function cookies(ctx){
     ctx.cookies.set(
         'cid',
         'hello world',
@@ -15,19 +24,11 @@ router.get('/', async (ctx, next) => {
             overwrite: false  // 是否允许重写
         }
     )
-  await ctx.render('index', {
-    title: 'Hello Koa 2!'
-  })
-})
+}/**
+ * Created by Administrator on 2017/6/23.
+ */
 
-router.get('/string', async (ctx, next) => {
-  ctx.body = 'koa2 string'
-})
 
-router.get('/json', async (ctx, next) => {
-  ctx.body = {
-    title: 'koa2 json'
-  }
-})
 
-module.exports = router
+
+module.exports = cookies

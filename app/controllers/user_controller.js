@@ -3,9 +3,8 @@
  */
 
 var mysql = require('mysql');
-const { query } = require('../../init/index')
-
-
+const { query } = require('../../init/sql/index')
+const cookies = require('../../init/cookie/cookie')
 
 
 
@@ -52,22 +51,23 @@ function parseQueryStr( queryStr ) {
 //获取用户
 exports.getUser = async (ctx, next) => {
 
+    console.log(ctx.cookies.get('cid'))
 	let dataList = await setData()
-	
+
     ctx.body = {
         username: dataList,
         age: 30
     }
+
 }
 
 
 
 exports.registerUser = async (ctx, next) => {
-	
+    console.log(ctx.cookies.get('cid'))
 	let postData = ctx.request.body
-	
+
 	let dataList = await selectAllData()
-	
     ctx.body = postData
 }
 
@@ -100,24 +100,3 @@ async function setData( ) {
 
 
 
-/*
- * 
- *	设置cookies
- * 
- */
-
-
-function cookies(ctx){
-	ctx.cookies.set(
-      	'cid', 
-      	'hello world',
-      	{
-        	domain: 'localhost',  // 写cookie所在的域名
-        	path: '/index',       // 写cookie所在的路径
-        	maxAge: 10 * 60 * 1000, // cookie有效时长
-        	expires: new Date('2017-02-15'),  // cookie失效时间
-        	httpOnly: false,  // 是否只用于http请求中获取
-        	overwrite: false  // 是否允许重写
-      	}
-    )
-}
